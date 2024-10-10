@@ -3,9 +3,10 @@
 # args: $AGAVE_VERSION $RPC_X_TOKEN $YELLOWSTONE-GRPC-GIT-REV $GEYSER_X_TOKEN
 if [ "$#" -ne 4 ]; then
     echo "Not enough params: run this script with the following args: AGAVE_VERSION RPC_X_TOKEN YELLOWSTONE-GRPC-GIT-REV GEYSER_X_TOKEN"
+    exit 1
 fi
 
-starting_pwd = $(pwd)
+starting_pwd=$(pwd)
 
 # updates
 sudo apt-get update
@@ -39,6 +40,7 @@ git clone https://github.com/anza-xyz/agave
 
 # install solana cli tools
 sh -c "$(curl -sSfL https://release.solana.com/v1.18.18/install)"
+PATH="/root/.local/share/solana/install/active_release/bin:$PATH"
 
 # generate validator identity
 solana-keygen new -o /solana/validator_identity.json
@@ -47,11 +49,11 @@ solana-keygen new -o /solana/validator_identity.json
 # @TODO - this doesn't install all deps for yellowstone
 cd /solana
 git clone https://github.com/rpcpool/yellowstone-grpc
-cp $starting_pwd/yellowstone-geyser-config.json /solana/yellowstone-grpc/yellowstone-grpc-geyser/config.json
+cd $starting_pwd
+cp yellowstone-geyser-config.json /solana/yellowstone-grpc/yellowstone-grpc-geyser/config.json
 sed -i s/GEYSER_X_TOKEN/$4/g /solana/yellowstone-grpc/yellowstone-grpc-geyser/config.json
 
 # build validator and yellowstone plugin
-cd $starting_pwd
 bash build-validator.sh $1 $3
 
 # tune knobs or whatever
