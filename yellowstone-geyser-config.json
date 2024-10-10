@@ -1,0 +1,75 @@
+{
+    "libpath": "../target/release/libyellowstone_grpc_geyser.so",
+    "log": {
+        "level": "info"
+    },
+    "grpc": {
+        "address": "0.0.0.0:10000",
+        "compression": {
+            "accept": [
+                "gzip"
+            ],
+            "send": [
+                "gzip"
+            ]
+        },
+        "max_decoding_message_size": "8_338_608",
+        "snapshot_plugin_channel_capacity": null,
+        "snapshot_client_channel_capacity": "50_000_000",
+        "channel_capacity": "10_000",
+        "unary_concurrency_limit": 100,
+        "unary_disabled": false,
+        "x_token": "GEYSER_X_TOKEN",
+        "filters": {
+            "accounts": {
+                "max": 50,
+                "any": true,
+                "account_max": 10000000,
+                "account_reject": [],
+                "owner_max": 10000,
+                "owner_reject": ["11111111111111111111111111111111"]
+            },
+            "slots": {
+                "max": 50
+            },
+            "transactions": {
+                "max": 10,
+                "any": false,
+                "account_include_max": 10,
+                "account_include_reject": [
+                    "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+                ],
+                "account_exclude_max": 10,
+                "account_required_max": 10
+            },
+            "transactions_status": {
+                "max": 5,
+                "any": false,
+                "account_include_max": 10,
+                "account_include_reject": [
+                    "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+                ],
+                "account_exclude_max": 10,
+                "account_required_max": 10
+            },
+            "blocks": {
+                "max": 5,
+                "account_include_max": 10,
+                "account_include_any": false,
+                "account_include_reject": [
+                    "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+                ],
+                "include_transactions": true,
+                "include_accounts": false,
+                "include_entries": false
+            },
+            "blocks_meta": {
+                "max": 50
+            },
+            "entry": {
+                "max": 1
+            }
+        }
+    },
+    "block_fail_action": "log"
+}

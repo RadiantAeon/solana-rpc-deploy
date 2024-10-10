@@ -1,0 +1,10 @@
+server {
+        listen 8899;
+        server_name _;
+
+        location /RPC_X_TOKEN {
+                proxy_pass http://localhost:11000/;
+                proxy_redirect  http://localhost:11000/ /;
+                include proxy_params;
+        }
+}

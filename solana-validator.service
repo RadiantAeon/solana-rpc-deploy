@@ -1,0 +1,16 @@
+[Unit]
+Description=Solana Validator
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=600
+User=solana
+LimitNOFILE=1000000
+LogRateLimitIntervalSec=0
+ExecStart=/solana/start_validator.sh
+
+[Install]
+WantedBy=multi-user.target
