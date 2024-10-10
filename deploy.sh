@@ -64,5 +64,12 @@ sudo sysctl -p /etc/sysctl.d/21-solana-validator.conf
 sudo cp logrotate /etc/logrotate.d/sol
 systemctl restart logrotate.service
 
+# move validator start script
+cp start_validator.sh /solana/start_validator.sh
+chmod +x /solana/start_validator.sh
+
+# transfer ownership of /solana directory to the solana user
+chown solana /solana
+
 # start rpc
 sudo systemctl start solana-validator.service
