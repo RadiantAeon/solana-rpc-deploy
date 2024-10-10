@@ -70,6 +70,10 @@ chmod +x /solana/start_validator.sh
 
 # transfer ownership of /solana directory to the solana user
 chown -R solana /solana
+chown -R $(whoami) /solana/agave
+chmod -R +r /solana/agave
+chown -R $(whoami) /solana/yellowstone-grpc
+chmod -R +r /solana/yellowstone-grpc
 
 # start rpc
 sudo systemctl start solana-validator.service
