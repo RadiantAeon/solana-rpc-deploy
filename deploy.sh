@@ -69,7 +69,7 @@ cp start_validator.sh /solana/start_validator.sh
 chmod +x /solana/start_validator.sh
 
 # transfer ownership of /solana directory to the solana user
-chown solana /solana
+chown -R solana /solana
 
 # start rpc
 sudo systemctl start solana-validator.service
