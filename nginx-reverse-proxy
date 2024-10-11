@@ -3,13 +3,14 @@ server {
         server_name _;
 
         location /RPC_X_TOKEN {
-                proxy_pass http://localhost:11000/;
-                proxy_redirect  http://localhost:11000/ /;
+                proxy_pass http://localhost:1100/;
+                proxy_redirect  http://localhost:1100/ /;
                 include proxy_params;
         }
 
         location /JUPITER_X_TOKEN {
-                rewrite ^/JUPITER_X_TOKEN/(.*)$ /$1 break;
+                rewrite /JUPITER_X_TOKEN/(.*) /$1 break;
                 proxy_pass http://localhost:8080;
+                proxy_redirect off;
         }
 }
