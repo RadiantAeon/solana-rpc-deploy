@@ -7,4 +7,9 @@ server {
                 proxy_redirect  http://localhost:11000/ /;
                 include proxy_params;
         }
+
+        location /JUPITER_X_TOKEN {
+                rewrite ^/JUPITER_X_TOKEN/(.*)$ /$1 break;
+                proxy_pass http://localhost:8080;
+        }
 }

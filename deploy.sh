@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# args: $AGAVE_VERSION $RPC_X_TOKEN $YELLOWSTONE-GRPC-GIT-REV $GEYSER_X_TOKEN
-if [ "$#" -ne 4 ]; then
-    echo "Not enough params: run this script with the following args: AGAVE_VERSION RPC_X_TOKEN YELLOWSTONE-GRPC-GIT-REV GEYSER_X_TOKEN"
+# args: $AGAVE_VERSION $RPC_X_TOKEN $YELLOWSTONE-GRPC-GIT-REV $GEYSER_X_TOKEN $JUPITER_X_TOKEN
+if [ "$#" -ne 5 ]; then
+    echo "Not enough params: run this script with the following args: AGAVE_VERSION RPC_X_TOKEN YELLOWSTONE-GRPC-GIT-REV GEYSER_X_TOKEN JUPITER_X_TOKEN"
     exit 1
 fi
 
@@ -21,6 +21,7 @@ sudo apt-get install nginx
 # probably not the best way but it works!
 sudo cp nginx-reverse-proxy /etc/nginx/sites-enabled/default
 sudo sed -i s/RPC_X_TOKEN/$2/g /etc/nginx/sites-enabled/default
+sudo sed -i s/JUPITER_X_TOKEN/$5/g /etc/nginx/sites-enabled/default
 
 # setup service
 sudo cp solana-validator.service /etc/systemd/system/solana-validator.service

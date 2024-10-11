@@ -9,3 +9,4 @@ what needs to be done manually?:
 - preferably 2 disks, one mounted at /solana/accounts, one at /solana/ledger
 - try `sudo mkfs -t ext4 /dev/<disk>` and then adding that disk to `/etc/fstab`
 - also don't forget to change `sshd_config` to have `PasswordAuthentication no` :)
+- setting up jupiter
