@@ -1,11 +1,14 @@
 #!/bin/bash
 
-# args: $AGAVE_VERSION $RPC_X_TOKEN $YELLOWSTONE-GRPC-GIT-REV $GEYSER_X_TOKEN $JUPITER_X_TOKEN
-if [ "$#" -ne 5 ]; then
-    echo "Not enough params: run this script with the following args: AGAVE_VERSION RPC_X_TOKEN YELLOWSTONE-GRPC-GIT-REV GEYSER_X_TOKEN JUPITER_X_TOKEN"
+# args: $AGAVE_VERSION $YELLOWSTONE-GRPC-GIT-REV
+if [ "$#" -ne 2 ]; then
+    echo "Not enough params: run this script with the following args: AGAVE_VERSION YELLOWSTONE-GRPC-GIT-REV"
     exit 1
 fi
 
+rpc_x_token=$(cat /proc/sys/kernel/random/uuid)
+geyser_x_token=$(cat /proc/sys/kernel/random/uuid)
+jupiter_x_token=$(cat /proc/sys/kernel/random/uuid)
 starting_pwd=$(pwd)
 
 # updates
@@ -20,8 +23,8 @@ sudo usermod -L solana
 sudo apt-get install nginx
 # probably not the best way but it works!
 sudo cp nginx-reverse-proxy /etc/nginx/sites-enabled/default
-sudo sed -i s/RPC_X_TOKEN/$2/g /etc/nginx/sites-enabled/default
-sudo sed -i s/JUPITER_X_TOKEN/$5/g /etc/nginx/sites-enabled/default
+sudo sed -i s/RPC_X_TOKEN/$rpc_x_token/g /etc/nginx/sites-enabled/default
+sudo sed -i s/JUPITER_X_TOKEN/$jupiter_x_token/g /etc/nginx/sites-enabled/default
 
 # setup service
 sudo cp solana-validator.service /etc/systemd/system/solana-validator.service
@@ -52,7 +55,7 @@ cd /solana
 git clone https://github.com/rpcpool/yellowstone-grpc
 cd $starting_pwd
 cp yellowstone-geyser-config.json /solana/yellowstone-grpc/yellowstone-grpc-geyser/config.json
-sed -i s/GEYSER_X_TOKEN/$4/g /solana/yellowstone-grpc/yellowstone-grpc-geyser/config.json
+sed -i s/GEYSER_X_TOKEN/$geyser_x_token/g /solana/yellowstone-grpc/yellowstone-grpc-geyser/config.json
 
 # build validator and yellowstone plugin
 bash build-validator.sh $1 $3
@@ -78,3 +81,8 @@ chmod -R +r /solana/yellowstone-grpc
 
 # start rpc
 sudo systemctl start solana-validator.service
+
+# echo the variables
+echo RPC is deloyed at http://0.0.0.0:8899/$rpc_x_token
+echo Yellowstone GRPC Geyser is deployed at http://0.0.0.0:10000 with X_TOKEN=$geyser_x_token
+echo Jupiter is deployed at http://0.0.0.0:8899/$jupiter_x_token
