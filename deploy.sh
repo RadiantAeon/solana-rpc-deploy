@@ -1,9 +1,14 @@
 #!/bin/bash
 
 # args: $AGAVE_VERSION $YELLOWSTONE-GRPC-GIT-REV
+no_rpc="n"
 if [ "$#" -ne 2 ]; then
     echo "Not enough params: run this script with the following args: AGAVE_VERSION YELLOWSTONE-GRPC-GIT-REV"
-    exit 1
+    echo "If you only want to install non rpc components, enter y:"
+    read no_rpc
+    if [ $no_rpc -ne "y"]; then
+        exit 1
+    fi
 fi
 
 rpc_x_token=$(cat /proc/sys/kernel/random/uuid)
@@ -18,13 +23,6 @@ sudo apt-get upgrade -y
 # solana user
 sudo useradd -M solana
 sudo usermod -L solana
-
-# setup nginx
-sudo apt-get install nginx
-# probably not the best way but it works!
-sudo cp nginx-reverse-proxy /etc/nginx/sites-enabled/default
-sudo sed -i s/RPC_X_TOKEN/$rpc_x_token/g /etc/nginx/sites-enabled/default
-sudo sed -i s/JUPITER_X_TOKEN/$jupiter_x_token/g /etc/nginx/sites-enabled/default
 
 # setup service
 sudo cp solana-validator.service /etc/systemd/system/solana-validator.service
@@ -49,16 +47,29 @@ PATH="/root/.local/share/solana/install/active_release/bin:$PATH"
 # generate validator identity
 solana-keygen new -o /solana/validator_identity.json
 
-# clone yellowstone-grpc
-# @TODO - this doesn't install all deps for yellowstone
-cd /solana
-git clone https://github.com/rpcpool/yellowstone-grpc
-cd $starting_pwd
-cp yellowstone-geyser-config.json /solana/yellowstone-grpc/yellowstone-grpc-geyser/config.json
-sed -i s/GEYSER_X_TOKEN/$geyser_x_token/g /solana/yellowstone-grpc/yellowstone-grpc-geyser/config.json
+if [ $no_rpc = "y"]; then
+    # setup nginx
+    sudo apt-get install nginx
+    # probably not the best way but it works!
+    sudo cp nginx-reverse-proxy /etc/nginx/sites-enabled/default
+    sudo sed -i s/RPC_X_TOKEN/$rpc_x_token/g /etc/nginx/sites-enabled/default
+    sudo sed -i s/JUPITER_X_TOKEN/$jupiter_x_token/g /etc/nginx/sites-enabled/default
 
-# build validator and yellowstone plugin
-bash build-validator.sh $1 $3
+    # clone yellowstone-grpc
+    # @TODO - this doesn't install all deps for yellowstone
+    cd /solana
+    git clone https://github.com/rpcpool/yellowstone-grpc
+    cd $starting_pwd
+    cp yellowstone-geyser-config.json /solana/yellowstone-grpc/yellowstone-grpc-geyser/config.json
+    sed -i s/GEYSER_X_TOKEN/$geyser_x_token/g /solana/yellowstone-grpc/yellowstone-grpc-geyser/config.json
+
+    # build validator and yellowstone plugin
+    bash build-validator.sh $1 $3
+else
+    # just build validator
+    bash build-validator.sh $1
+fi
+
 
 # tune knobs or whatever
 sudo cp sysctl.conf /etc/sysctl.d/21-solana-validator.conf
@@ -83,6 +94,10 @@ chmod -R +r /solana/yellowstone-grpc
 sudo systemctl start solana-validator.service
 
 # echo the variables
-echo RPC is deloyed at http://0.0.0.0:8899/$rpc_x_token
-echo Yellowstone GRPC Geyser is deployed at http://0.0.0.0:10000 with X_TOKEN=$geyser_x_token
-echo Jupiter is deployed at http://0.0.0.0:8899/$jupiter_x_token
+if [ $no_rpc -ne "y"]; then
+    echo RPC is deloyed at http://0.0.0.0:8899/$rpc_x_token
+    echo Yellowstone GRPC Geyser is deployed at http://0.0.0.0:10000 with X_TOKEN=$geyser_x_token
+    echo Jupiter is deployed at http://0.0.0.0:8899/$jupiter_x_token
+else
+    echo Validator deployed! Don't forget to change the start_validator params and copy keys.
+fi
