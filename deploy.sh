@@ -6,7 +6,7 @@ if [ "$#" -ne 2 ]; then
     echo "Not enough params: run this script with the following args: AGAVE_VERSION YELLOWSTONE-GRPC-GIT-REV"
     echo "If you only want to install non rpc components, enter y:"
     read no_rpc
-    if [ $no_rpc -ne "y"]; then
+    if [ $no_rpc -ne "y" ]; then
         exit 1
     fi
 fi
@@ -47,7 +47,7 @@ PATH="/root/.local/share/solana/install/active_release/bin:$PATH"
 # generate validator identity
 solana-keygen new -o /solana/validator_identity.json
 
-if [ $no_rpc = "y"]; then
+if [ $no_rpc = "y" ]; then
     # setup nginx
     sudo apt-get install nginx
     # probably not the best way but it works!
@@ -94,7 +94,7 @@ chmod -R +r /solana/yellowstone-grpc
 sudo systemctl start solana-validator.service
 
 # echo the variables
-if [ $no_rpc -ne "y"]; then
+if [ $no_rpc -ne "y" ]; then
     echo RPC is deloyed at http://0.0.0.0:8899/$rpc_x_token
     echo Yellowstone GRPC Geyser is deployed at http://0.0.0.0:10000 with X_TOKEN=$geyser_x_token
     echo Jupiter is deployed at http://0.0.0.0:8899/$jupiter_x_token
