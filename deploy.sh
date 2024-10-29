@@ -47,7 +47,7 @@ PATH="/root/.local/share/solana/install/active_release/bin:$PATH"
 # generate validator identity
 solana-keygen new -o /solana/validator_identity.json
 
-if [ "$no_rpc" = "y" ]; then
+if [ "$no_rpc" != "y" ]; then
     # setup nginx
     sudo apt-get install nginx
     # probably not the best way but it works!
@@ -99,5 +99,5 @@ if [ "$no_rpc" != "y" ]; then
     echo Yellowstone GRPC Geyser is deployed at http://0.0.0.0:10000 with X_TOKEN=$geyser_x_token
     echo Jupiter is deployed at http://0.0.0.0:8899/$jupiter_x_token
 else
-    echo Validator deployed! Don't forget to change the start_validator params and copy keys.
+    echo Validator deployed! Don\'t forget to change the start_validator params and copy keys.
 fi
