@@ -4,7 +4,7 @@ git pull
 git checkout $1
 cargo build --release
 
-if [$2 -ne "" ]; then
+if [ "$2" != "" ]; then
     cd /solana/yellowstone-grpc
     git pull
     git checkout $2
