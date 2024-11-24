@@ -20,7 +20,10 @@
         "unary_concurrency_limit": 100,
         "unary_disabled": false,
         "x_token": "GEYSER_X_TOKEN",
-        "filters": {
+        "filter_name_size_limit": 32,
+        "filter_names_size_limit": 1024,
+        "filter_names_cleanup_interval": "1s",
+        "filter_limits": {
             "accounts": {
                 "max": 50,
                 "any": true,
@@ -66,7 +69,7 @@
             "blocks_meta": {
                 "max": 50
             },
-            "entry": {
+            "entries": {
                 "max": 1
             }
         }
