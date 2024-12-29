@@ -25,7 +25,7 @@ exec /solana/jito-solana/target/release/agave-validator\
         --private-rpc\
         --maximum-local-snapshot-age 2500\
         --rpc-send-default-max-retries 0\
-        --rpc-send-leader-count 4\
+        --rpc-send-leader-count 2\
         --account-index-include-key SAVEYPDMSAYT2oRLdoHsyaHpWmB1YpWevD5gPqGJE9u\
         --account-index-include-key So1endDq2YkqhipRh3WViPa8hdiSpxWy6z3Z6tMCpAo\
         --account-index-include-key FarmsPZpWu9i7Kky8tPN37rs2TpmMrAZrC7S7vJa91Hr\
