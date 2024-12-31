@@ -4,17 +4,21 @@
 # sleep 120
 
 # main pid of solana-validator
-solana_pid=$(pgrep -f "agave-validator --identity")
 while [ -z "$solana_pid" ]; do
-    echo "set_affinity: solana_validator_404"
-    sleep 20
+    solana_pid=$(pgrep -f "agave-validator --identity")
+    if [ -z "$solana_pid" ]; then
+        echo "set_affinity: solana_validator_404"
+        sleep 20
+    fi
 done
 
 # find thread id
-thread_pid=$(ps -T -p $solana_pid -o spid,comm | grep 'solPohTickProd' | awk '{print $1}')
 while [ -z "$thread_pid" ]; do
-    echo "set_affinity: solPohTickProd_404"
-    sleep 120
+    thread_pid=$(ps -T -p $solana_pid -o spid,comm | grep 'solPohTickProd' | awk '{print $1}')
+    if [ -z "$thread_pid" ]; then
+        echo "set_affinity: solPohTickProd_404"
+        sleep 120
+    fi
 done
 
 current_affinity=$(taskset -cp $thread_pid 2>&1 | awk '{print $NF}')
