@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # wait to load the binary
-sleep 120
+# sleep 120
 
 # main pid of solana-validator
 solana_pid=$(pgrep -f "agave-validator --identity")
-if [ -z "$solana_pid" ]; then
+until [ -z "$solana_pid" ]; do
     echo "set_affinity: solana_validator_404"
-    exit 1
-fi
+    sleep 20
+done
 
 # find thread id
 thread_pid=$(ps -T -p $solana_pid -o spid,comm | grep 'solPohTickProd' | awk '{print $1}')
