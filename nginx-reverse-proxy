@@ -5,8 +5,9 @@ server {
         location /RPC_X_TOKEN {
                 proxy_http_version 1.1;
                 proxy_set_header Connection "";
-                proxy_pass http://localhost:1100/;
-                proxy_redirect  http://localhost:1100/ /;
+                rewrite /RPC_X_TOKEN/(.*) /$1 break;
+                proxy_pass http://localhost:1100;
+                proxy_redirect off;
                 include proxy_params;
                 proxy_connect_timeout       300;
                 proxy_send_timeout          300;
