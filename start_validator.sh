@@ -28,5 +28,5 @@ exec /solana/agave/target/release/agave-validator\
         --account-index-exclude-key TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA\
         --account-index-exclude-key TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb\
         --full-snapshot-interval-slots 25000\
-        --incremental-snapshot-interval-slots 2000\
+        --incremental-snapshot-interval-slots 1000\
         --geyser-plugin-config /solana/yellowstone-grpc/yellowstone-grpc-geyser/config.json
