@@ -6,7 +6,7 @@ StartLimitIntervalSec=0
 [Service]
 Type=simple
 Restart=always
-RestartSec=600
+RestartSec=5
 User=solana
 LimitNOFILE=1000000
 LogRateLimitIntervalSec=0
