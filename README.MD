@@ -14,3 +14,10 @@ what needs to be done manually?:
 - setup JITO
 - set NTP server to relevant ntp server https://jito-labs.gitbook.io/mev/searcher-resources/block-engine/mainnet-addresses
 - set swappiness/other tuning
+
+
+IOWAIT issues?
+try the following
+- Edit `/etc/default/grub`.
+- Add `nvme_core.default_ps_max_latency_us=0` to the `GRUB_CMDLINE_LINUX_DEFAULT` line. For example: `GRUB_CMDLINE_LINUX_DEFAULT="nvme_core.default_ps_max_latency_us=0"`.
+- Run `update-grub`.

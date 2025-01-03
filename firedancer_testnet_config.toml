@@ -1,0 +1,25 @@
+user = "firedancer"
+
+[gossip]
+    entrypoints = [
+      "entrypoint.testnet.solana.com:8001",
+      "entrypoint2.testnet.solana.com:8001",
+      "entrypoint3.testnet.solana.com:8001",
+    ]
+
+[consensus]
+    identity_path = "/solana/validator_keypair.json"
+    vote_account_path = "/solana/vote_keypair.json"
+
+[rpc]
+    port = 1100
+    full_api = true
+    private = true
+
+[reporting]
+    solana_metrics_config = ""
+
+[ledger]
+    path = "/solana/ledger"
+    accounts_path = "/solana/accounts"
+    limit_size = 200_000_000

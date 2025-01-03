@@ -45,7 +45,8 @@ sh -c "$(curl -sSfL https://release.solana.com/v1.18.18/install)"
 PATH="/root/.local/share/solana/install/active_release/bin:$PATH"
 
 # generate validator identity
-solana-keygen new -o /solana/validator_identity.json
+solana-keygen new -o /solana/unstaked_validator_identity.json
+ln -sf /solana/unstaked_validator_identity.json /solana/validator_identity.json
 
 if [ "$no_rpc" != "y" ]; then
     # setup nginx

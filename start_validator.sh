@@ -21,8 +21,7 @@ exec /solana/agave/target/release/agave-validator\
         --private-rpc\
         --maximum-local-snapshot-age 2500\
         --rpc-send-default-max-retries 0\
-        --rpc-send-leader-count 7\
-        --rpc-threads 32\
+        --rpc-send-leader-count 2\
         --minimal-snapshot-download-speed 50000000\
         --account-index-exclude-key kinXdEcpDQeHPEuQnqmUgtYykqKGVFq6CeVX5iAHJq6\
         --account-index-exclude-key TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA\
