@@ -61,10 +61,10 @@ user = "solana"
         gui_listen_port = 80
 
 [layout]
-    affinity = "1-16"
-    agave_affinity = "17-47"
+    affinity = "1-36"
+    agave_affinity = "37-48"
     net_tile_count = 1
     quic_tile_count = 1
-    verify_tile_count = 4
-    bank_tile_count = 2
+    verify_tile_count = 26
+    bank_tile_count = 6
     shred_tile_count = 1
