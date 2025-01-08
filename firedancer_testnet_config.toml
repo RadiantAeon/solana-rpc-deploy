@@ -10,6 +10,13 @@ user = "solana"
 [consensus]
     identity_path = "/solana/validator_identity.json"
     vote_account_path = "/solana/vote_account.json"
+    known_validators = [
+        "7heQNXEtxSv3wV8sNbuQsDN5xNGbbpLvHGiyXuJxEf7n", 
+        "ESgP63knYThVSNWcwgwzA8cnh2MnUf6SaCWpnC8mrkn3",
+        "2Nnw9RZvT2qeKq74rkw8hWDJZUDSKxiBarmQMFxHzzCt",
+        "J7v9ndmcoBuo9to2MnHegLnBkC9x3SAVbQBJo5MMJrN1",
+        "2CY8VXH2jummjSmwcusSj2jGMiaHE4eo7WQ9LScxykvt",
+    ]
 
 [rpc]
     port = 1100
