@@ -44,7 +44,7 @@ user = "solana"
         #
         # In your configuration above.
         # for some reason, gui can't bind to the port it wants to... maybe nginx? dunno
-        enabled = false
+        enabled = true
 
         # The address to listen on.  By default, if enabled, the GUI
         # will only be accessible from the local machine.  If you wish
@@ -55,7 +55,16 @@ user = "solana"
         # endpoint but exposing it to the internet from a production
         # validator is not recommended as it increases the attack
         # surface of the validator.
-        # gui_listen_address = "127.0.0.1"
+        gui_listen_address = "0.0.0.0"
 
         # The port to listen on.
-        # gui_listen_port = 80
+        gui_listen_port = 80
+
+[layout]
+    affinity = "1-16"
+    agave_affinity = "17-47"
+    net_tile_count = 1
+    quic_tile_count = 1
+    verify_tile_count = 4
+    bank_tile_count = 2
+    shred_tile_count = 1
