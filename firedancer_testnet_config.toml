@@ -1,4 +1,4 @@
-user = "firedancer"
+user = "solana"
 
 [gossip]
     entrypoints = [
