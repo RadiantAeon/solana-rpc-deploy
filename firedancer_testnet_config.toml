@@ -65,6 +65,6 @@ user = "solana"
     agave_affinity = "37-47"
     net_tile_count = 1
     quic_tile_count = 1
-    verify_tile_count = 19
+    verify_tile_count = 17
     bank_tile_count = 6
     shred_tile_count = 1
