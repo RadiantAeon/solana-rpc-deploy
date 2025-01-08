@@ -8,8 +8,8 @@ user = "solana"
     ]
 
 [consensus]
-    identity_path = "/solana/validator_keypair.json"
-    vote_account_path = "/solana/vote_keypair.json"
+    identity_path = "/solana/validator_identity.json"
+    vote_account_path = "/solana/vote_account.json"
 
 [rpc]
     port = 1100
