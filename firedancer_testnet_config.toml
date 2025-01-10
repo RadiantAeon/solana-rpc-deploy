@@ -11,11 +11,16 @@ user = "solana"
     identity_path = "/solana/validator_identity.json"
     vote_account_path = "/solana/vote_account.json"
     known_validators = [
-        "7heQNXEtxSv3wV8sNbuQsDN5xNGbbpLvHGiyXuJxEf7n", 
+        "7heQNXEtxSv3wV8sNbuQsDN5xNGbbpLvHGiyXuJxEf7n",
         "ESgP63knYThVSNWcwgwzA8cnh2MnUf6SaCWpnC8mrkn3",
         "2Nnw9RZvT2qeKq74rkw8hWDJZUDSKxiBarmQMFxHzzCt",
         "J7v9ndmcoBuo9to2MnHegLnBkC9x3SAVbQBJo5MMJrN1",
         "2CY8VXH2jummjSmwcusSj2jGMiaHE4eo7WQ9LScxykvt",
+        "5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on",
+        "dDzy5SR3AXdYWVqbDEkVFdvSPCtS9ihF5kJkHCtXoFs",
+        "Ft5fbkqNa76vnsjYNwjDZUXoTWpP7VYm3mtsaQckQADN",
+        "eoKpUABi59aT4rR9HGS3LcMecfut9x7zJyodWWP43YQ",
+        "9QxCLckBiJc783jnMvXZubK4wH86Eqqvashtrwvcsgkv",
     ]
 
 [rpc]
@@ -30,6 +35,9 @@ user = "solana"
     path = "/solana/ledger"
     accounts_path = "/solana/accounts"
     limit_size = 200_000_000
+
+[snapshots]
+    path = "/solana/snapshots"
 
 [tiles]
     [tiles.gui]
@@ -61,10 +69,11 @@ user = "solana"
         gui_listen_port = 80
 
 [layout]
-    affinity = "1-36"
-    agave_affinity = "37-47"
+    affinity = "1-22"
+    agave_affinity = "23-47"
     net_tile_count = 1
     quic_tile_count = 1
-    verify_tile_count = 17
-    bank_tile_count = 6
-    shred_tile_count = 1
+    resolv_tile_count = 1
+    verify_tile_count = 6
+    bank_tile_count = 2
+    shred_tile_count = 2
