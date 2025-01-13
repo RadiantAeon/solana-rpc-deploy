@@ -5,7 +5,7 @@ exec /solana/agave/target/release/agave-validator\
         --identity /solana/validator_identity.json\
         --accounts /solana/accounts\
         --ledger /solana/ledger\
-        --limit-ledger-size\
+        --limit-ledger-size 50000000\
         --entrypoint entrypoint.mainnet-beta.solana.com:8001\
         --entrypoint entrypoint2.mainnet-beta.solana.com:8001\
         --entrypoint entrypoint3.mainnet-beta.solana.com:8001\
