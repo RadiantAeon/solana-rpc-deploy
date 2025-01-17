@@ -23,7 +23,7 @@ exec /solana/jito-solana/target/release/agave-validator\
         --snapshots /solana/snapshots\
         --full-rpc-api\
         --private-rpc\
-        --maximum-local-snapshot-age 2500\
+        --no-snapshot-fetch\
         --rpc-send-default-max-retries 0\
         --rpc-send-leader-count 2\
         --account-index-include-key SAVEYPDMSAYT2oRLdoHsyaHpWmB1YpWevD5gPqGJE9u\
@@ -42,3 +42,4 @@ exec /solana/jito-solana/target/release/agave-validator\
         --block-engine-url ${BLOCK_ENGINE_URL} \
         --shred-receiver-address ${SHRED_RECEIVER_ADDR}\
         --block-verification-method unified-scheduler\
+        --experimental-poh-pinned-cpu-core 2\
