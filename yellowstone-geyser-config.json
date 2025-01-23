@@ -28,7 +28,7 @@
       "channel_capacity": "1_000_000",
       "unary_concurrency_limit": 100,
       "unary_disabled": false,
-      "x_token": "506dcfdc-fe01-406b-8a18-66270e6d247b",
+      "x_token": "GEYSER_X_TOKEN",
       "replay_stored_slots": 0,
       "filter_name_size_limit": 128,
       "filter_names_size_limit": 4096,
