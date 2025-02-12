@@ -13,6 +13,7 @@ what needs to be done manually?:
 - setting up jupiter
 - setup JITO
 - set NTP server to relevant ntp server https://jito-labs.gitbook.io/mev/searcher-resources/block-engine/mainnet-addresses
+- update kernel to use amd-pstate
 - set swappiness/other tuning
 
 
