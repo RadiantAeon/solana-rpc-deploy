@@ -36,7 +36,7 @@ rustup update
 sudo apt-get install libssl-dev libudev-dev pkg-config zlib1g-dev llvm clang cmake make libprotobuf-dev protobuf-compiler
 
 # clone validator
-mkdir /solana
+sudo mkdir /solana
 cd /solana
 git clone https://github.com/anza-xyz/agave
 
@@ -48,6 +48,7 @@ PATH="/root/.local/share/solana/install/active_release/bin:$PATH"
 solana-keygen new -o /solana/unstaked_validator_identity.json
 ln -sf /solana/unstaked_validator_identity.json /solana/validator_identity.json
 
+cd $starting_pwd
 if [ "$no_rpc" != "y" ]; then
     # setup nginx
     sudo apt-get install nginx
