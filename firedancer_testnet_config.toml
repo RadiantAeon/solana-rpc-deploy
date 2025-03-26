@@ -25,16 +25,16 @@ user = "solana"
 
 [rpc]
     port = 1100
-    full_api = true
+    full_api = false
     private = true
 
 [reporting]
-    solana_metrics_config = ""
+    solana_metrics_config = "host=https://metrics.solana.com:8086,db=tds,u=testnet_write,p=c4fa841aa918bf8274e3e2a44d77568d9861b3ea"
 
 [ledger]
     path = "/solana/ledger"
     accounts_path = "/solana/accounts"
-    limit_size = 200_000_000
+    limit_size = 50_000_000
 
 [snapshots]
     path = "/solana/snapshots"
@@ -69,11 +69,19 @@ user = "solana"
         gui_listen_port = 80
 
 [layout]
-    affinity = "1-22"
-    agave_affinity = "23-47"
+    affinity = "1-24"
+    agave_affinity = "25-35,37-38,40-47"
     net_tile_count = 1
-    quic_tile_count = 1
+    quic_tile_count = 2
     resolv_tile_count = 1
-    verify_tile_count = 6
+    verify_tile_count = 4
     bank_tile_count = 2
-    shred_tile_count = 2
+    shred_tile_count = 3
+
+[tiles.bundle]
+    enabled = true
+    url = "https://testnet.block-engine.jito.wtf"
+    tip_distribution_program_addr = "F2Zu7QZiTYUhPd7u9ukRVwxh7B71oA3NMJcHuCHc29P2"
+    tip_payment_program_addr = "GJHtFqM9agxPmkeKjHny6qiRKrXZALvvFGiKf11QE7hy"
+    tip_distribution_authority = "GZctHpWXmsZC1YHACTGGcHhYxjdRqQvTpYkb9LMvxDib"
+    commission_bps = 10000
