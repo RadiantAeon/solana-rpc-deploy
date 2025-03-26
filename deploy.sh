@@ -33,7 +33,7 @@ sudo systemctl stop solana-validator.service
 curl https://sh.rustup.rs -sSf | sh
 source $HOME/.cargo/env
 rustup update
-sudo apt-get install libssl-dev libudev-dev pkg-config zlib1g-dev llvm clang cmake make libprotobuf-dev protobuf-compiler
+sudo apt-get install -y libssl-dev libudev-dev pkg-config zlib1g-dev llvm clang cmake make libprotobuf-dev protobuf-compiler libclang-dev
 
 # clone validator
 sudo mkdir /solana
