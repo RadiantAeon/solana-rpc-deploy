@@ -7,7 +7,7 @@ if [ "$#" -ne 1 ]; then
     exit 1;
 fi
 /solana/jito-solana/target/release/agave-validator -l /solana/ledger wait-for-restart-window --min-idle-time 2 --skip-new-snapshot-check
+ln -sf /solana/unstaked_validator_identity.json /solana/validator_identity.json
 scp /solana/ledger/tower-1_9-$(solana-keygen pubkey /solana/staked_validator_identity.json).bin $1:/solana/ledger
 /solana/jito-solana/target/release/agave-validator -l /solana/ledger set-identity /solana/unstaked_validator_identity.json
-ln -sf /solana/unstaked_validator_identity.json /solana/validator_identity.json
 ssh $1 'bash -s' < hotswap_cold.sh
