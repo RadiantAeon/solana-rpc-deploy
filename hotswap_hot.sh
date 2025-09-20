@@ -8,17 +8,26 @@ if [ "$#" -ne 3 ]; then
     exit 1;
 fi
 
+if ([$2 != "agave" ] && [$2 != "fd"]) || ([$3 != "agave" ] && [$3 != "fd"]); then
+    echo "Variant strings are: \"fd\" and \"agave\""
+    exit 1;
+fi
+
+if [$2 = "fd"] && [! -f /solana/firedancer/build/native/gcc/bin/fdctl]; then
+    echo "Did not find /solana/firedancer/build/native/gcc/bin/fdctl! Are you sure you're running firedancer locally?"
+    exit 1;
+fi
+
 /solana/jito-solana/target/release/agave-validator -l /solana/ledger wait-for-restart-window --min-idle-time 2 --skip-new-snapshot-check
 ln -sf /solana/unstaked_validator_identity.json /solana/validator_identity.json
 scp /solana/ledger/tower-1_9-$(solana-keygen pubkey /solana/staked_validator_identity.json).bin $1:/solana/ledger
 if [$2 == "agave"]; then
-/solana/jito-solana/target/release/agave-validator -l /solana/ledger set-identity /solana/unstaked_validator_identity.json
+    /solana/jito-solana/target/release/agave-validator -l /solana/ledger set-identity /solana/unstaked_validator_identity.json
 else
-/solana/firedancer/build/native/gcc/bin/fdctl set-identity --config /solana/firedancer/firedancer_config.toml /solana/unstaked_validator_identity.json
+    /solana/firedancer/build/native/gcc/bin/fdctl set-identity --config /solana/firedancer/firedancer_config.toml /solana/unstaked_validator_identity.json
 fi
-ln -sf /solana/unstaked_validator_identity.json /solana/validator_identity.json
 if [$3 == "agave"]; then
-ssh $1 'bash -s' < hotswap_cold_agave.sh
+    ssh $1 'bash -s' < hotswap_cold_agave.sh
 else
-ssh $1 'bash -s' < hotswap_cold_firedancer.sh 
+    ssh $1 'bash -s' < hotswap_cold_firedancer.sh 
 fi
