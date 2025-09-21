@@ -13,8 +13,8 @@ if ([$2 != "agave" ] && [$2 != "fd"]) || ([$3 != "agave" ] && [$3 != "fd"]); the
     exit 1;
 fi
 
-if [$2 = "fd"] && [! -f /solana/firedancer/build/native/gcc/bin/fdctl]; then
-    echo "Did not find /solana/firedancer/build/native/gcc/bin/fdctl! Are you sure you're running firedancer locally?"
+if [$2 = "fd"] && ([! -f /solana/firedancer/build/native/gcc/bin/fdctl] || [! -f /solana/firedancer/firedancer_config.toml]); then
+    echo "Did not find /solana/firedancer/build/native/gcc/bin/fdctl and/or /solana/firedancer/firedancer_config.toml! Are you sure you're running firedancer locally?"
     exit 1;
 fi
 
