@@ -4,12 +4,12 @@
 # copied from https://pumpkins-pool.gitbook.io/pumpkins-pool
 if [ "$#" -ne 3 ]; then
     echo "Not enough params: run this script with the following args: COLD_SERVER_SSH SOURCE_VARIANT DEST_VARIANT"
-    echo "Variant strings are: \"fd\" and \"agave\""
+    echo "Variant strings are: 'fd' and 'agave'"
     exit 1;
 fi
 
 if ([$2 != "agave" ] && [$2 != "fd"]) || ([$3 != "agave" ] && [$3 != "fd"]); then
-    echo "Variant strings are: \"fd\" and \"agave\""
+    echo "Variant strings are: 'fd' and 'agave'"
     exit 1;
 fi
 
