@@ -24,7 +24,7 @@ scp /solana/ledger/tower-1_9-$(solana-keygen pubkey /solana/staked_validator_ide
 if [ "$2" == "agave" ]; then
     /solana/jito-solana/target/release/agave-validator -l /solana/ledger set-identity /solana/unstaked_validator_identity.json
 else
-    /solana/firedancer/build/native/gcc/bin/fdctl set-identity --config /solana/firedancer/firedancer_config.toml /solana/unstaked_validator_identity.json
+    /solana/firedancer/build/native/gcc/bin/fdctl set-identity --config /solana/firedancer/firedancer_config.toml /solana/unstaked_validator_identity.json --force
 fi
 if [ "$3" == "agave" ]; then
     ssh $1 'bash -s' < hotswap_cold_agave.sh
